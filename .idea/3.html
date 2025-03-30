@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступ к элементам</title>
+</head>
+<body>
+
+<div>Пользователи:</div>
+<ul>
+    <li>Джон</li>
+    <li>Пит</li>
+</ul>
+
+<script>
+    let divElement = document.querySelector('div');
+    alert(divElement.textContent);
+
+    let ulElement = document.querySelector('ul');
+    alert(ulElement.textContent);
+
+    let secondLi = document.querySelectorAll('li')[1];
+    alert(secondLi.textContent);
+
+</script>
+
+</body>
+</html>

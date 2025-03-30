@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css">
+    <title>Лицемер (с)</title>
+</head>
+<body>
+<script>
+    const body = document.body;
+
+    const header = document.createElement('header');
+    const main = document.createElement('main');
+    main.className = 'content';
+
+    const aside = document.createElement('aside');
+    const section = document.createElement('section');
+
+    const headerD = document.createElement('div');
+    headerD.className = 'header-d';
+    headerD.textContent = 'Выберите лицо, которое нравится вам больше остальных:';
+
+    const display = document.createElement('div');
+    display.className = 'display';
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const img = document.createElement('img');
+    img.src = 'https://thispersondoesnotexist.com';
+    img.alt = 'Avatar';
+
+    const description = document.createElement('div');
+    description.className = 'description';
+
+    const descriptionText = document.createElement('p');
+    descriptionText.textContent = 'Персона номер 1';
+
+    description.appendChild(descriptionText);
+    card.appendChild(img);
+    card.appendChild(description);
+    display.appendChild(card);
+    section.appendChild(headerD);
+    section.appendChild(display);
+    main.appendChild(aside);
+    main.appendChild(section);
+    body.appendChild(header);
+    body.appendChild(main);
+</script>
+
+</body>
+</html>

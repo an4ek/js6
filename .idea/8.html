@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Динамический список</title>
+</head>
+<body>
+<button onclick="createList()">Создать список</button>
+<ul id="dynamicList"></ul>
+
+<script>
+    function createList() {
+        let itemCount = parseInt(prompt("Введите количество пунктов списка:"), 10);
+        if (isNaN(itemCount) || itemCount <= 0) {
+            alert("Введите корректное число!");
+            return;
+        }
+
+        let list = document.getElementById("dynamicList");
+        list.innerHTML = "";
+
+        for (let i = 0; i < itemCount; i++) {
+            let itemText = prompt(`Введите текст для пункта ${i + 1}:`);
+            if (itemText) {
+                let listItem = document.createElement("li");
+                listItem.textContent = itemText;
+                list.appendChild(listItem);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

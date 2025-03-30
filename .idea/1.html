@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sin</title>
+</head>
+<body>
+<script>
+    // Задача a: Вычисление sin(x)
+    function taskA() {
+        let x = prompt("Введите число x:");
+        alert("sin(" + x + ") = " + Math.sin(x));
+
+    }
+
+    // Задача b: Принадлежность точки квадрату
+    function taskB() {
+        let x1 = parseFloat(prompt("Введите x первой вершины квадрата:"));
+        let y1 = parseFloat(prompt("Введите y первой вершины квадрата:"));
+        let x2 = parseFloat(prompt("Введите x противоположной вершины:"));
+        let y2 = parseFloat(prompt("Введите y противоположной вершины:"));
+
+        if (x1 === x2 || y1 === y2) {
+            alert("Это не квадрат!");
+            return;
+        }
+
+        let x = parseFloat(prompt("Введите x точки:"));
+        let y = parseFloat(prompt("Введите y точки:"));
+
+        let minX = Math.min(x1, x2);
+        let maxX = Math.max(x1, x2);
+        let minY = Math.min(y1, y2);
+        let maxY = Math.max(y1, y2);
+
+        if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+            alert("Точка принадлежит квадрату!");
+        } else {
+            alert("Точка НЕ принадлежит квадрату!");
+        }
+    }
+
+    // Задача c: Сумма двух квадратов
+    function taskC() {
+        let n = parseInt(prompt("Введите натуральное число:"));
+        let found = false;
+
+        for (let i = 1; i * i <= n; i++) {
+            for (let j = 1; j * j <= n; j++) {
+                if (i * i + j * j === n) {
+                    alert(n + " = " + i + "² + " + j + "²");
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (!found) {
+            alert(n + " нельзя представить как сумму двух квадратов натуральных чисел");
+        }
+    }
+
+    // Задача d: Проверка email
+    function taskD() {
+        let str = prompt("Введите email:");
+        if (str.includes("@")) {
+            alert("Email корректный");
+        } else {
+            alert("Ошибка: email должен содержать символ @!");
+        }
+    }
+
+    // Задача e: Доля латинских букв
+    function taskE() {
+        let s = prompt("Введите строку:");
+        let total = s.length;
+        let latin = 0;
+
+        for (let char of s) {
+            if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+                latin++;
+            }
+        }
+
+        let percent = (latin / total * 100).toFixed(2);
+        alert("Доля латинских букв: " + percent + "%");
+    }
+
+    // Задача f: Удаление повторных слов
+    function taskF() {
+        let s = prompt("Введите строку:");
+        let words = s.split(/\s+/); // \s+ означает "один или несколько пробельных символов"
+        let unique = [];
+        let seen = {};
+
+        for (let word of words) {
+            if (!seen[word]) {
+                seen[word] = true;
+                unique.push(word);
+            }
+        }
+
+        alert("Результат: " + unique.join(" "));
+    }
+
+    // Задача g: Массив по 5 чисел в строке
+    function taskG() {
+        let n = parseInt(prompt("Введите количество чисел:"));
+        let arr = [];
+        let output1 = "Массив в прямом порядке:\n";
+
+        for (let i = 0; i < n; i++) {
+            let el = Math.floor(Math.random() * 100);
+            arr.push(el);
+            output1 += el + " ";
+        }
+        alert(output1);
+
+        let output = "Массив в обратном порядке:\n";
+        for (let i = arr.length - 1; i >= 0; i--) {
+            output += arr[i] + " ";
+            if ((arr.length - i) % 5 === 0) output += "\n";
+        }
+        alert(output);
+    }
+
+    // Задача h: Матрица с нулями на диагоналях
+    function taskH() {
+        let n = parseInt(prompt("Введите порядок матрицы:"));
+        let matrix = [];
+        let minMain = Infinity, maxMain = -Infinity;
+        let minSecondary = Infinity, maxSecondary = -Infinity;
+
+        for (let i = 0; i < n; i++) {
+            matrix[i] = [];
+            for (let j = 0; j < n; j++) {
+                matrix[i][j] = Math.floor(Math.random() * 10 + 1);
+
+                if (i === j) { // Главная диагональ
+                    if (matrix[i][j] < minMain) minMain = matrix[i][j];
+                    if (matrix[i][j] > maxMain) maxMain = matrix[i][j];
+                }
+                if (i + j === n - 1) { // Побочная диагональ
+                    if (matrix[i][j] < minSecondary) minSecondary = matrix[i][j];
+                    if (matrix[i][j] > maxSecondary) maxSecondary = matrix[i][j];
+                }
+            }
+        }
+
+        for (let i = 0; i < n; i++) {
+            if (matrix[i][i] !== minMain && matrix[i][i] !== maxMain) {
+                matrix[i][i] = 0;
+            }
+        }
+
+        for (let i = 0; i < n; i++) {
+            let j = n - 1 - i;
+            if (matrix[i][j] !== minSecondary && matrix[i][j] !== maxSecondary) {
+                matrix[i][j] = 0;
+            }
+        }
+
+        let output = "Результат:\n";
+        for (let i = 0; i < n; i++) {
+            output += matrix[i].join(" ") + "\n";
+        }
+        alert(output);
+    }
+
+
+    // Задача i: Добавление дней к дате
+    function taskI() {
+        let days = parseInt(prompt("Введите количество дней для добавления:"));
+        let date = new Date();
+        date.setDate(date.getDate() + days);
+        alert("Новая дата: " + date.toLocaleDateString());
+    }
+
+    // Задача j: Месяцы до 1 сентября
+    function taskJ() {
+        let today = new Date();
+        let sep1 = new Date(today.getFullYear(), 8, 1);
+
+        if (today > sep1) {
+            sep1.setFullYear(sep1.getFullYear() + 1);
+        }
+
+        let months = (sep1.getFullYear() - today.getFullYear()) * 12;
+        months += sep1.getMonth() - today.getMonth();
+
+        if (today.getDate() > sep1.getDate()) {
+            months--;
+        }
+
+        alert("До 1 сентября осталось " + months + " месяцев");
+    }
+
+    let task = prompt("Введите букву задачи (a-j):").toLowerCase();
+    switch(task) {
+        case 'a': taskA(); break;
+        case 'b': taskB(); break;
+        case 'c': taskC(); break;
+        case 'd': taskD(); break;
+        case 'e': taskE(); break;
+        case 'f': taskF(); break;
+        case 'g': taskG(); break;
+        case 'h': taskH(); break;
+        case 'i': taskI(); break;
+        case 'j': taskJ(); break;
+        default: alert("Неверный выбор задачи!");
+    }
+</script>
+</body>
+</html>

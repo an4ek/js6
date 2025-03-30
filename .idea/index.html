@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="content-type" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css">
+    <title>Лицемер (с)</title>
+</head>
+<body>
+<header></header>
+<main class="content">
+    <aside></aside>
+    <section>
+        <div class="header-d">
+            Выберите лицо, которое нравится вам больше остальных:
+        </div>
+        <div class="display"></div>
+    </section>
+</main>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const display = document.querySelector('.display');
+        let cardCount = 0;
+        const maxCards = 6;
+
+        const names = ['Максим', 'Дмитрий', 'Сергей', 'Владимир', 'Тимофей',
+            'Роман', 'Глеб', 'Фёдор', 'Степан', 'Павел', 'Ярослав',
+            'Вячеслав', 'Григорий'];
+        const surnames = ['Волков', 'Соколов', 'Белов', 'Комаров', 'Орлов',
+            'Лебедев', 'Соловьёв', 'Морозов', 'Новиков', 'Козлов',
+            'Егоров', 'Фёдоров'];
+
+        function generateRandomName() {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomSurname = surnames[Math.floor(Math.random() * surnames.length)];
+            return `${randomName} ${randomSurname}`;
+        }
+
+        const intervalId = setInterval(function() {
+            if (cardCount >= maxCards) {
+                clearInterval(intervalId);
+                return;
+            }
+
+            cardCount++;
+
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const img = document.createElement('img');
+            img.src = `https://thispersondoesnotexist.com/?${cardCount}`;
+            img.alt = 'Avatar';
+
+            const description = document.createElement('div');
+            description.className = 'description';
+
+            const descriptionText = document.createElement('p');
+            descriptionText.textContent = generateRandomName();
+
+            description.appendChild(descriptionText);
+            card.appendChild(img);
+            card.appendChild(description);
+
+            display.appendChild(card);
+
+        }, 2000);
+    });
+</script>
+</html>
